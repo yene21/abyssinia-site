@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ABYSSINIA — Restaurant Éthiopien à Rouen</title>
+
+<style>
+:root{
+  --bg:#0b1224;--card:rgba(255,255,255,.06);--border:rgba(255,255,255,.12);
+  --text:#e5e7eb;--muted:#9ca3af;--accent:#d97706;--green:#22c55e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;font-family:system-ui,Arial;background:var(--bg);color:var(--text)}
+a{text-decoration:none;color:inherit}
+.container{max-width:1100px;margin:auto;padding:0 20px}
+section{padding:80px 0}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(11,18,36,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+.nav strong{letter-spacing:.15em}
+.nav a{margin-left:16px;color:var(--muted)}
+.nav a:hover{color:var(--text)}
+
+/* HERO */
+.hero{
+  min-height:80vh;display:flex;align-items:center;
+  background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.85)),url("images/facade.jpg") center/cover no-repeat;
+}
+.hero h1{font-size:56px;margin:0}
+.hero p{max-width:560px;color:#d1d5db;font-size:18px}
+.actions{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:12px 18px;border-radius:14px;font-weight:800;border:1px solid var(--border)}
+.btn.primary{background:var(--green);color:#052e16}
+.btn.secondary{background:transparent;color:white}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+
+label{display:block;margin-top:14px;font-weight:700}
+input,select{width:100%;margin-top:6px;padding:12px;border-radius:12px;background:#020617;color:var(--text);border:1px solid var(--border)}
+button{margin-top:18px;width:100%;padding:14px;border-radius:14px;background:var(--accent);border:none;font-weight:900;cursor:pointer}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.gallery img{height:260px;object-fit:cover;border-radius:16px;transition:.4s}
+.gallery img:hover{transform:scale(1.04)}
+
+.reveal{opacity:0;transform:translateY(25px);transition:.8s}
+.reveal.visible{opacity:1;transform:none}
+
+#ok{display:none;margin-top:18px;text-align:center}
+#qrcode{background:white;padding:10px;border-radius:12px;display:inline-block}
+
+footer{text-align:center;color:var(--muted);padding:40px 0}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav">
+    <strong>ABYSSINIA</strong>
+    <div>
+      <a href="#reserver">Réserver</a>
+      <a href="#photos">Photos</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <h1>ABYSSINIA</h1>
+    <p>Restaurant éthiopien à Rouen. Cuisine authentique et ambiance chaleureuse.</p>
+    <div class="actions">
+      <a href="#reserver" class="btn primary">Réserver une table</a>
+      <a href="tel:0278088934" class="btn secondary">📞 02 78 08 89 34</a>
+    </div>
+  </div>
+</header>
+
+<section id="reserver" class="reveal">
+  <div class="container grid">
+    <div class="card">
+      <h2>Réservation</h2>
+
+      <form id="resForm">
+        <label>Langue</label>
+        <select id="lang">
+          <option value="FR">Français</option>
+          <option value="EN">English</option>
+        </select>
+
+        <label>Prénom</label>
+        <input id="firstName" required>
+
+        <label>Nombre de personnes</label>
+        <select id="people" required>
+          <option>1</option><option>2</option><option>3</option>
+          <option>4</option><option>5</option><option>6</option>
+          <option>7</option><option>8+</option>
+        </select>
+
+        <label>Date</label>
+        <input type="date" id="date" required>
+
+        <label>Heure</label>
+        <select id="arrival" required>
+          <option>11:00</option><option>11:30</option><option>12:00</option><option>12:30</option>
+          <option>13:00</option><option>13:30</option>
+          <option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option>
+          <option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option>
+          <option>22:00</option><option>22:30</option><option>23:00</option>
+        </select>
+
+        <button type="submit">Envoyer la demande</button>
+      </form>
+
+      <div id="ok">
+        <h3>Demande envoyée ✅</h3>
+        <div id="qrcode"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Horaires</h2>
+      <p>
+        <b>Lundi – Vendredi</b><br>11h – 14h / 18h – 00h<br><br>
+        <b>Samedi</b><br>11h – 00h<br><br>
+        <b>Dimanche</b> : Fermé
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="photos" class="reveal">
+  <div class="container">
+    <h2>Notre cuisine</h2>
+    <div class="gallery">
+      <img src="images/plat-1.jpg">
+      <img src="images/plat-2.jpg">
+      <img src="images/menu.jpg">
+      <img src="images/banniere.jpg">
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <div class="container card">
+    <h2>Contact</h2>
+    <p id="openStatus">⏳ Checking opening hours…</p>
+    <p>
+      <strong>ABYSSINIA</strong><br>
+      31 Rue Anatole France, 76000 Rouen<br>
+      📞 <a href="tel:0278088934">02 78 08 89 34</a><br>
+      ✉️ <a href="mailto:Abyssinia.rouen@gmail.com">Abyssinia.rouen@gmail.com</a>
+    </p>
+
+    <div style="margin-top:20px;border-radius:16px;overflow:hidden;border:1px solid var(--border)">
+      <iframe src="https://www.google.com/maps?q=31%20Rue%20Anatole%20France%2C%2076000%20Rouen&output=embed"
+        width="100%" height="320" style="border:0" loading="lazy"></iframe>
+    </div>
+
+    <div style="margin-top:14px;text-align:center">
+      <a href="https://www.google.com/maps/dir/?api=1&destination=31+Rue+Anatole+France,+76000+Rouen"
+         target="_blank" class="btn">📍 Get directions</a>
+    </div>
+
+    <div style="margin-top:12px;text-align:center">
+      <a href="https://www.google.com/maps/search/?api=1&query=ABYSSINIA+Restaurant+31+Rue+Anatole+France+Rouen"
+         target="_blank" class="btn">⭐ View Google Reviews</a>
+    </div>
+  </div>
+</section>
+
+<footer>© ABYSSINIA — Rouen</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+/* ====== EMAILJS CONFIG ====== */
+emailjs.init("YOUR_PUBLIC_KEY"); // <-- PUT YOUR PUBLIC KEY HERE
+
+/* ====== DATE RULES ====== */
+const date=document.getElementById("date");
+date.min=new Date().toISOString().split("T")[0];
+date.addEventListener("change",()=>{
+  if(new Date(date.value).getDay()===0){
+    alert("Le restaurant est fermé le dimanche.");
+    date.value="";
+  }
+});
+
+/* ====== OPEN / CLOSED ====== */
+function updateOpenStatus(){
+  const el=document.getElementById("openStatus");
+  const n=new Date(),d=n.getDay(),t=n.getHours()+n.getMinutes()/60;
+  let open=false;
+  if(d===0) open=false;
+  else if(d>=1&&d<=5) open=(t>=11&&t<14)||(t>=18&&t<24);
+  else if(d===6) open=(t>=11&&t<24);
+  el.textContent=open?"🟢 Open now":"🔴 Closed now";
+}
+updateOpenStatus();setInterval(updateOpenStatus,60000);
+
+/* ====== REVEAL ====== */
+const obs=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add("visible")),{threshold:.15});
+document.querySelectorAll(".reveal").forEach(r=>obs.observe(r));
+
+/* ====== FORM SUBMIT (EMAILJS) ====== */
+document.getElementById("resForm").addEventListener("submit",function(e){
+  e.preventDefault();
+
+  const code="ABY-"+Math.random().toString(36).substring(2,8).toUpperCase();
+  const payload=`ABYSSINIA\nCode:${code}\nPrénom:${firstName.value}\nPersonnes:${people.value}\nDate:${date.value}\nHeure:${arrival.value}`;
+
+  emailjs.send(
+    "YOUR_SERVICE_ID",     // <-- PUT SERVICE ID
+    "YOUR_TEMPLATE_ID",    // <-- PUT TEMPLATE ID
+    {
+      prenom:firstName.value,
+      personnes:people.value,
+      date:date.value,
+      heure:arrival.value,
+      langue:lang.value,
+      code:code,
+      qr_payload:payload
+    }
+  ).then(()=>{
+    document.getElementById("ok").style.display="block";
+    new QRCode(document.getElementById("qrcode"),payload);
+  },()=>{
+    alert("Erreur lors de l’envoi de l’email.");
+  });
+});
+</script>
+
+</body>
+</html>
